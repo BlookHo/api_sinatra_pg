@@ -1,0 +1,10 @@
+%h1
+  Oops! Something went Wonky!
+  %br
+  Sinatra StandardError occured...
+%h2{style: "color: #d32424"}
+  Error content: #{@error}
+%p
+  Official Apologies, there was an error with your request.
+  -#%h3  #{request.env['sinatra.error'].message}
+%p If the error persists, please contact the administrator.

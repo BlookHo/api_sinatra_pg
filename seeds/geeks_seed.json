@@ -1,0 +1,14 @@
+{ "name": "Mike", "stack": "Sinatra React", "resume": true }
+{ "name": "Alex", "stack": "Ruby React", "resume": true }
+{ "name": "Martha", "stack": "Rails", "resume": false }
+{ "name": "Juri", "stack": "Java", "resume": true }
+{ "name": "Andrew", "stack": "PHP", "resume": false }
+{ "name": "Nina", "stack": "Node", "resume": true }
+{ "name": "Bob", "stack": "Front end", "resume": true }
+{ "name": "Kate", "stack": "PHP", "resume": false }
+{ "name": "Boris", "stack": "Full stack", "resume": true }
+
+
+
+
+
