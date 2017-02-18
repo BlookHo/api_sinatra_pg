@@ -15,8 +15,11 @@ Files with json data to be seeded - in ./seeds/ folder:
 In terminal - in project folder put command (having Mongo server already started):
 
 __mongoimport --db mongo_hirer_dev --collection jobs --file seeds/jobs_seed.json__
+
 __mongoimport --db mongo_hirer_dev --collection companies --file seeds/companies_seed.json__
+
 __mongoimport --db mongo_hirer_dev --collection geeks --file seeds/geeks_seed.json__
+
 __mongoimport --db mongo_hirer_dev --collection applies --file seeds/applies_seed.json__
 
 
