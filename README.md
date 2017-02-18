@@ -387,32 +387,7 @@ response:
     },
     "read": true
   },
-  {
-    "_id": {
-      "$oid": "58a07a44885ce7e31f25335f"
-    },
-    "geek_id": {
-      "$oid": "589f01c85a49894908146ee1"
-    },
-    "invited": false,
-    "job_id": {
-      "$oid": "589f01385a49894908146ebc"
-    },
-    "read": false
-  },
-  {
-    "_id": {
-      "$oid": "58a07a44885ce7e31f253360"
-    },
-    "geek_id": {
-      "$oid": "589f01c85a49894908146ee5"
-    },
-    "invited": false,
-    "job_id": {
-      "$oid": "58a07a44885ce7e31f253360"
-    },
-    "read": true
-  },
+...
   {
     "_id": {
       "$oid": "58a07a44885ce7e31f253361"
