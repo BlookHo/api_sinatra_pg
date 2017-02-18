@@ -33,3 +33,4 @@ npm-debug.log
 
 .rubocop_todo.yml
 
+/usage.txt

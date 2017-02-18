@@ -1,0 +1,289 @@
+
+
+##Usage
+
+  Run in project folder (irb): __source 'start.rb'__
+
+  can run the application by running from the same folder (say, /home/user/code/my_sinatra_app):
+
+  rackup
+
+  This starts WEBrick, which serves your application. You will notice that WEBRick tells you what IP and port it is serving; take note.
+   You can access your application at http://IP:port.
+
+  App usage example:
+
+```
+co = tem)
+price = co.total
+
+```
+
+
+
+
+Output terminal:
+
+2017-02-09T12:17:18.062+0300	connected to: localhost
+2017-02-09T12:17:18.064+0300	imported 3 documents
+
+#### Working with MongoDB shell in terminal Ubuntu
+#### https://docs.mongodb.com/manual/reference/mongo-shell/
+
+$ sudo service mongod start
+[sudo] password for flyingminer:
+flyingminer@flyingminer-hp-envy-x360-convertible:~/RubymineProjects/Sinatra/api_hirer$ mongo
+MongoDB shell version v3.4.2
+
+> show dbs
+admin            0.000GB
+local            0.000GB
+mongo_hirer_dev  0.000GB
+> use mongo_hirer_dev
+switched to db mongo_hirer_dev
+> db
+mongo_hirer_dev
+> show collections
+geeks
+jobs
+>
+db.geeks.help()
+DBCollection help
+	db.geeks.find().help() - show DBCursor help
+	db.geeks.bulkWrite( operations, <optional params> ) - bulk execute write operations, optional parameters are: w, wtimeout, j
+
+db.geeks.count( query = {}, <optional params> ) - count the number of documents that matches the query, optional parameters are: limit, skip, hint, maxTimeMS
+> db.geeks.count()
+9
+
+	db.geeks.copyTo(newColl) - duplicates collection by copying all documents to newColl; no indexes are copied.
+	db.geeks.convertToCapped(maxBytes) - calls {convertToCapped:'geeks', size:maxBytes}} command
+	db.geeks.createIndex(keypattern[,options])
+	db.geeks.createIndexes([keypatterns], <options>)
+	db.geeks.dataSize()
+	db.geeks.deleteOne( filter, <optional params> ) - delete first matching document, optional parameters are: w, wtimeout, j
+	db.geeks.deleteMany( filter, <optional params> ) - delete all matching documents, optional parameters are: w, wtimeout, j
+	db.geeks.distinct( key, query, <optional params> ) - e.g. db.geeks.distinct( 'x' ), optional parameters are: maxTimeMS
+	db.geeks.drop() drop the collection
+	db.geeks.dropIndex(index) - e.g. db.geeks.dropIndex( "indexName" ) or db.geeks.dropIndex( { "indexKey" : 1 } )
+	db.geeks.dropIndexes()
+	db.geeks.ensureIndex(keypattern[,options]) - DEPRECATED, use createIndex() instead
+	db.geeks.explain().help() - show explain help
+	db.geeks.reIndex()
+	db.geeks.find([query],[fields]) - query is an optional query filter. fields is optional set of fields to return.
+	                                              e.g. db.geeks.find( {x:77} , {name:1, x:1} )
+	db.geeks.find(...).count()
+	db.geeks.find(...).limit(n)
+	db.geeks.find(...).skip(n)
+	db.geeks.find(...).sort(...)
+	db.geeks.findOne([query], [fields], [options], [readConcern])
+	db.geeks.findOneAndDelete( filter, <optional params> ) - delete first matching document, optional parameters are: projection, sort, maxTimeMS
+	db.geeks.findOneAndReplace( filter, replacement, <optional params> ) - replace first matching document, optional parameters are: projection, sort, maxTimeMS, upsert, returnNewDocument
+	db.geeks.findOneAndUpdate( filter, update, <optional params> ) - update first matching document, optional parameters are: projection, sort, maxTimeMS, upsert, returnNewDocument
+	db.geeks.getDB() get DB object associated with collection
+	db.geeks.getPlanCache() get query plan cache associated with collection
+	db.geeks.getIndexes()
+	db.geeks.group( { key : ..., initial: ..., reduce : ...[, cond: ...] } )
+	db.geeks.insert(obj)
+	db.geeks.insertOne( obj, <optional params> ) - insert a document, optional parameters are: w, wtimeout, j
+	db.geeks.insertMany( [objects], <optional params> ) - insert multiple documents, optional parameters are: w, wtimeout, j
+	db.geeks.mapReduce( mapFunction , reduceFunction , <optional params> )
+	db.geeks.aggregate( [pipeline], <optional params> ) - performs an aggregation on a collection; returns a cursor
+	db.geeks.remove(query)
+	db.geeks.replaceOne( filter, replacement, <optional params> ) - replace the first matching document, optional parameters are: upsert, w, wtimeout, j
+	db.geeks.renameCollection( newName , <dropTarget> ) renames the collection.
+	db.geeks.runCommand( name , <options> ) runs a db command with the given name where the first param is the collection name
+	db.geeks.save(obj)
+	db.geeks.stats({scale: N, indexDetails: true/false, indexDetailsKey: <index key>, indexDetailsName: <index name>})
+	db.geeks.storageSize() - includes free space allocated to this collection
+	db.geeks.totalIndexSize() - size in bytes of all the indexes
+	db.geeks.totalSize() - storage allocated for all data and indexes
+	db.geeks.update( query, object[, upsert_bool, multi_bool] ) - instead of two flags, you can pass an object with fields: upsert, multi
+	db.geeks.updateOne( filter, update, <optional params> ) - update the first matching document, optional parameters are: upsert, w, wtimeout, j
+	db.geeks.updateMany( filter, update, <optional params> ) - update all matching documents, optional parameters are: upsert, w, wtimeout, j
+	db.geeks.validate( <full> ) - SLOW
+	db.geeks.getShardVersion() - only for use with sharding
+	db.geeks.getShardDistribution() - prints statistics about data distribution in the cluster
+	db.geeks.getSplitKeysForChunks( <maxChunkSize> ) - calculates split points over all chunks and returns splitter function
+	db.geeks.getWriteConcern() - returns the write concern used for any operations on this collection, inherited from server/db if set
+	db.geeks.setWriteConcern( <write concern doc> ) - sets the write concern for writes to the collection
+	db.geeks.unsetWriteConcern( <write concern doc> ) - unsets the write concern for writes to the collection
+	db.geeks.latencyStats() - display operation latency histograms for this collection
+>
+
+> db.geeks.find().help()
+find(<predicate>, <projection>) modifiers
+	.sort({...})
+	.limit(<n>)
+	.skip(<n>)
+	.batchSize(<n>) - sets the number of docs to return per getMore
+	.collation({...})
+	.hint({...})
+	.readConcern(<level>)
+	.readPref(<mode>, <tagset>)
+	.count(<applySkipLimit>) - total # of objects matching query. by default ignores skip,limit
+	.size() - total # of objects cursor would return, honors skip,limit
+	.explain(<verbosity>) - accepted verbosities are {'queryPlanner', 'executionStats', 'allPlansExecution'}
+	.min({...})
+	.max({...})
+	.maxScan(<n>)
+	.maxTimeMS(<n>)
+	.comment(<comment>)
+	.snapshot()
+	.tailable(<isAwaitData>)
+	.noCursorTimeout()
+	.allowPartialResults()
+	.returnKey()
+	.showRecordId() - adds a $recordId field to each returned object
+
+Cursor methods
+	.toArray() - iterates through docs and returns an array of the results
+	.forEach(<func>)
+	.map(<func>)
+	.hasNext()
+	.next()
+	.close()
+	.objsLeftInBatch() - returns count of docs left in current batch (when exhausted, a new getMore will be issued)
+	.itcount() - iterates through documents and counts them
+	.getQueryPlan() - get query plans associated with shape. To get more info on query plans, call getQueryPlan().help().
+	.pretty() - pretty print each document, possibly over multiple lines
+>
+ db.geeks.find()
+{ "_id" : ObjectId("589c3843b19518ab5b3d3419"), "name" : "Mike", "stack" : "Sinatra React", "resume" : "Uploaded" }
+{ "_id" : ObjectId("589c3843b19518ab5b3d341a"), "name" : "Alex", "stack" : "Ruby React", "resume" : "Uploaded" }
+{ "_id" : ObjectId("589c3843b19518ab5b3d341b"), "name" : "Martha", "stack" : "Rails", "resume" : "Not Uploaded" }
+{ "_id" : ObjectId("589c3843b19518ab5b3d341c"), "name" : "Juri", "stack" : "Java", "resume" : "Uploaded" }
+{ "_id" : ObjectId("589c3843b19518ab5b3d341d"), "name" : "Andrew", "stack" : "PHP", "resume" : "Not Uploaded" }
+{ "_id" : ObjectId("589c3843b19518ab5b3d341e"), "name" : "Nina", "stack" : "Node", "resume" : "Uploaded" }
+{ "_id" : ObjectId("589c3843b19518ab5b3d341f"), "name" : "Bob", "stack" : "Front end", "resume" : "Uploaded" }
+{ "_id" : ObjectId("589c3843b19518ab5b3d3420"), "name" : "Kate", "stack" : "PHP", "resume" : "Not Uploaded" }
+{ "_id" : ObjectId("589c3843b19518ab5b3d3421"), "name" : "Boris", "stack" : "Full stack", "resume" : "Uploaded" }
+> db.geeks.findOne({"_id": ObjectId("589c3843b19518ab5b3d341c")})
+  {
+  	"_id" : ObjectId("589c3843b19518ab5b3d341c"),
+  	"name" : "Juri",
+  	"stack" : "Java",
+  	"resume" : "Uploaded"
+  }
+  > > var res = db.geeks.findOne({"_id": ObjectId("589eef5766b82271b17efb78")})
+    > res
+    {
+            "_id" : ObjectId("589eef5766b82271b17efb78"),
+            "name" : "Вася",
+            "stack" : "Algol"
+    }
+    > res["stack"]
+    Algol
+    > var res = db.geeks.findOne({"_id": ObjectId("589eef5766b82271b17efb78")})["stack"]
+    > res
+    Algol
+    > var res = db.geeks.findOne({"_id": ObjectId("589eef5766b82271b17efb78")})["_id"]
+    > res
+    ObjectId("589eef5766b82271b17efb78")
+
+    >db.geeks.updateOne({"_id": ObjectId("589eef5766b82271b17efb78")}, $set: { "name" : "Коля" } )
+     2017-02-11T14:13:43.975+0300 E QUERY    [thread1] SyntaxError: missing ) after argument list @(shell):1:70
+     > db.geeks.updateOne({"_id": ObjectId("589eef5766b82271b17efb78")}, { $set: { "name" : "Коля" } } )
+     { "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+     > var res = db.geeks.findOne({"_id": ObjectId("589eef5766b82271b17efb78")})["name"]
+     > res
+     Коля
+     >
+
+> var res = db.geeks.findOne({"_id": ObjectId("589eef5766b82271b17efb78")})["_id"]
+> res
+ObjectId("589eef5766b82271b17efb78")
+> db.geeks.updateOne({"_id": ObjectId("589eef5766b82271b17efb78")}, { $set: { "name" : res } } )
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> var res = db.geeks.findOne({"_id": ObjectId("589eef5766b82271b17efb78")})["name"]
+> res
+ObjectId("589eef5766b82271b17efb78")
+> var res = db.geeks.findOne({"_id": ObjectId("589eef5766b82271b17efb78")})
+> res
+{
+        "_id" : ObjectId("589eef5766b82271b17efb78"),
+        "name" : ObjectId("589eef5766b82271b17efb78"),
+        "stack" : "Algol"
+}
+>
+
+ var name = db.geeks.findOne({"_id": ObjectId("589eef5766b82271b17efb78")})["name"]
+> name
+ObjectId("589eef5766b82271b17efb78")
+> var geek_one = db.geeks.findOne({"name": name})["name"]
+> geek_one
+ObjectId("589eef5766b82271b17efb78")
+> var geek_one = db.geeks.findOne({"name": name})
+> geek_one
+{
+        "_id" : ObjectId("589eef5766b82271b17efb78"),
+        "name" : ObjectId("589eef5766b82271b17efb78"),
+        "stack" : "Algol"
+}
+
+
+ idGeek = db.geeks.findOne({"_id": ObjectId("589eef5766b82271b17efb78")})["_id"]
+ObjectId("589eef5766b82271b17efb78")
+> idGeek
+ObjectId("589eef5766b82271b17efb78")
+> foundGeek = db.geeks.findOne({"_id": idGeek })
+{
+        "_id" : ObjectId("589eef5766b82271b17efb78"),
+        "name" : ObjectId("589eef5766b82271b17efb78"),
+        "stack" : "Algol"
+}
+>
+
+#### After new seeds of Companys and Jobs loded:
+> show collections
+companys
+geeks
+jobs
+> companyId = db.companys.findOne({"name": "MoGo" })["_id"]
+ObjectId("589ef7185a49894908146cc3")
+>
+> companyId = db.compnys.findOne({"name": "MoGo" })["_id"]
+2017-02-11T15:01:20.347+0300 E QUERY    [thread1] TypeError: db.compnys.findOne(...) is null :
+@(shell):1:13
+> companyId = db.companys.findOne({"name": "MoGo" })["_id"]
+ObjectId("589ef7185a49894908146cc3")
+> jobsCompany = db.jobs.find({"company_id": companyId})
+{ "_id" : ObjectId("589efc745a49894908146dd7"), "company_id" : ObjectId("589ef7185a49894908146cc3"), "name" : "Sinatra React", "place" : "Remote", "description" : "This is a nice remote job." }
+{ "_id" : ObjectId("589efc745a49894908146dda"), "company_id" : ObjectId("589ef7185a49894908146cc3"), "name" : "Node React", "place" : "Permanent", "description" : "Perspective Node.js job for Team-lead." }
+>
+
+Write and update Job to other company
+
+> companyId1 = db.companys.findOne({"name": "MoGo" })["_id"]
+ObjectId("589ef7185a49894908146cc3")
+> companyId2 = db.companys.findOne({"name": "Wirkkle" })["_id"]
+ObjectId("589ef7185a49894908146cc4")
+> job4 = db.jobs.findOne({"company_id": companyId1,"name": "Node React"})
+{
+        "_id" : ObjectId("589efe015a49894908146e33"),
+        "company_id" : ObjectId("589ef7185a49894908146cc3"),
+        "name" : "Node React",
+        "place" : "Permanent",
+        "description" : "Perspective Node.js job for Team-lead."
+}
+> db.jobs.find({"company_id": companyId1 } )
+{ "_id" : ObjectId("589efe015a49894908146e30"), "company_id" : ObjectId("589ef7185a49894908146cc3"), "name" : "Sinatra React", "place" : "Remote", "description" : "This is a nice remote job." }
+{ "_id" : ObjectId("589efe015a49894908146e33"), "company_id" : ObjectId("589ef7185a49894908146cc3"), "name" : "Node React", "place" : "Permanent", "description" : "Perspective Node.js job for Team-lead." }
+> db.jobs.find({"company_id": companyId2 } )
+{ "_id" : ObjectId("589efe015a49894908146e31"), "company_id" : ObjectId("589ef7185a49894908146cc4"), "name" : "Ruby React", "place" : "Contract", "description" : "Contract job with a lot of deadlines." }
+> db.jobs.updateOne({"company_id": companyId2}, { $set: { "company_id" : companyId2 } } )
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 0 }
+> db.jobs.find({"company_id": companyId2 } )
+{ "_id" : ObjectId("589efe015a49894908146e31"), "company_id" : ObjectId("589ef7185a49894908146cc4"), "name" : "Ruby React", "place" : "Contract", "description" : "Contract job with a lot of deadlines." }
+> db.jobs.find({"company_id": companyId1 } )
+{ "_id" : ObjectId("589efe015a49894908146e30"), "company_id" : ObjectId("589ef7185a49894908146cc3"), "name" : "Sinatra React", "place" : "Remote", "description" : "This is a nice remote job." }
+{ "_id" : ObjectId("589efe015a49894908146e33"), "company_id" : ObjectId("589ef7185a49894908146cc3"), "name" : "Node React", "place" : "Permanent", "description" : "Perspective Node.js job for Team-lead." }
+> db.jobs.updateOne({"company_id": companyId2}, { $set: { "company_id" : companyId1 } } )
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.jobs.find({"company_id": companyId1 } )
+{ "_id" : ObjectId("589efe015a49894908146e30"), "company_id" : ObjectId("589ef7185a49894908146cc3"), "name" : "Sinatra React", "place" : "Remote", "description" : "This is a nice remote job." }
+{ "_id" : ObjectId("589efe015a49894908146e31"), "company_id" : ObjectId("589ef7185a49894908146cc3"), "name" : "Ruby React", "place" : "Contract", "description" : "Contract job with a lot of deadlines." }
+{ "_id" : ObjectId("589efe015a49894908146e33"), "company_id" : ObjectId("589ef7185a49894908146cc3"), "name" : "Node React", "place" : "Permanent", "description" : "Perspective Node.js job for Team-lead." }
+> db.jobs.find({"company_id": companyId2 } )
+>
+
