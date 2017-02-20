@@ -1,44 +1,129 @@
-### Start
+## Start
 
-### Here MongoDB is using. To start: before: 
+### Here Postgresql is using. To start: before:
+ 
+```bash
+# Installing Postgres
+sudo apt-get -y install postgresql postgresql-contrib postgresql-server-dev-9.5
+# Creating the role with privileges
+# -s makes a superuser, -r allows role creation, -d allows DB creation
+sudo -u postgres createuser -srd sinatra_admin
 
-__sudo service mongod start__
+# Creating the DBs
+sudo -u postgres createdb sinatra_seq_dev
+sudo -u postgres createdb sinatra_seq_test
+sudo -u postgres createdb sinatra_seq_prod
+# Allowing Postgres to listen all ports
+echo "listen_addresses = '*'" | sudo tee -a /etc/postgresql/9.5/main/postgresql.conf
+echo "host all all all trust" | sudo tee -a /etc/postgresql/9.5/main/pg_hba.conf
+sudo -u postgres psql -c "ALTER ROLE sinatra_admin WITH PASSWORD 'password';"
+sudo service postgresql restart
+```
 
-__sudo service mongod stop__
-__sudo service mongod restart__
+### Create ActiveRecord migrations for Postgresql databases: 
 
-### Import data to MongoDB collection
+``bush
+rake db:create_migration NAME=geeks
+db/migrate/20170218112044_geeks.rb
+``
+__repeat for jobs, companies and applies__
+
+## Sequel - see main DOC's here:
+
+Getting Started with Sequel [Getting Startedl: ](http://tutorials.jumpstartlab.com/topics/sql/sequel.html)
+
+Diff between [AR and Sequel: ](https://mrbrdo.wordpress.com/2013/10/15/why-you-should-stop-using-activerecord-and-start-using-sequel/)
+
+Sequel [for SQL Users](http://sequel.jeremyevans.net/rdoc/files/doc/sql_rdoc.html)
+
+ActiveRecord users transition to [Sequel](http://sequel.jeremyevans.net/rdoc/files/doc/active_record_rdoc.html)
+
+Sequel main [README](http://sequel.jeremyevans.net/rdoc/files/README_rdoc.html)
+
+Sequel [Cheat Sheet](http://sequel.jeremyevans.net/rdoc/files/doc/cheat_sheet_rdoc.html)
+
+Sequel [ClassMethods](http://sequel.jeremyevans.net/rdoc/classes/Sequel/Model/ClassMethods.html)
+
+Sequel [Dataset Filtering](http://sequel.jeremyevans.net/rdoc/files/doc/dataset_filtering_rdoc.html)
+
+
+### Connect to database
+
+````
+DB = Sequel.connect(
+  adapter: :postgres,
+  database: 'sinatra_seq_dev',
+  host: 'localhost',
+  password: 'password',
+  user: 'sinatra_admin',
+  max_connections: 10,
+  # logger: Logger.new('log/db.log')
+  )
+  
+  OR
+  
+DB = Sequel.connect('postgres://sinatra_admin:password@localhost/sinatra_seq_dev')
+````
+
+### Create Sequel migrations for Postgresql databases: 
+In terminal project folder:
+
+__sequel -d postgres://sinatra_admin:password@localhost/sinatra_seq_dev > db/migrate/001_create_jobs_migration.rb__
+
+### To create a database with all the tables by RUN all migrations:
+In terminal project folder: (sequel -m path/to/migrations postgres://host/database)
+
+__bundle exec sequel -m db/migrate postgres://db/sinatra_seq_dev__
+or
+__sequel -m db/migrate postgres://sinatra_admin:password@localhost/sinatra_seq_dev__
+
+### RUN all migrations: - by rake task hand made:
+In terminal project folder:
+__rake db:migrate__
+Migrated to latest
+
+#### NOTE: Migrations should run (have numbers) in accordance with content apperance.
+
+Sequel was not designed specifically with Rails in mind, and unfortunately does not integrate with Rails by itself 
+
+ Sequel:
+
+Plays nice with threads, unlike ActiveRecord which has problems I discuss at the end of the post.
+Allows you to avoid SQL code fragments 99% of the time, if you want and without screwing with core Ruby classes.
+Modular design with plugins and extensions.
+Foreign key constraint support in migrations out of the box.
+Left join support. Heh.
+More powerful association preloading.
+Querying in Sequel is immensely more powerful compared to ActiveRecord. You can do almost anything without writing any SQL.
+### Import data to Postgres database
 
 Files with json data to be seeded - in ./seeds/ folder:
 
-#### To seed:
-In terminal - in project folder put command (having Mongo server already started):
+#### Create seed file for model :companies
 
-__mongoimport --db mongo_hirer_dev --collection jobs --file seeds/jobs_seed.json__
+```
+Sequel.seed(:development, :test) do # Applies only to "development" and "test" environments
+  def run
 
-__mongoimport --db mongo_hirer_dev --collection companies --file seeds/companies_seed.json__
+    dataset = DB[:companies]
 
-__mongoimport --db mongo_hirer_dev --collection geeks --file seeds/geeks_seed.json__
+    dataset.insert(:name => 'MoGo', :location => 'New York')
+    dataset.insert(:name => 'Wirkkle', :location => 'London')
+    dataset.insert(:name => 'Artesis', :location => 'Saint-Petersburg')
+    dataset.insert(:name => 'BuildEmpire', :location => 'London')
+  end
+end
+```
 
-__mongoimport --db mongo_hirer_dev --collection applies --file seeds/applies_seed.json__
+#### To seed from created files:
+```
+Sequel::Seed.setup :development
+Sequel.extension :seed
+Sequel::Seeder.apply(DB, './seeds')
+```
 
 
 ####  In terminal:
-
-__mongo__
-
-> __use mongo_hirer_dev__
-switched to db mongo_hirer_dev
-
-> __show collections__
-companys
-geeks
-jobs
-> db.jobs.drop()
-true
-> db.jobs.find()
-> 
-
 
 ## API endpoints
 

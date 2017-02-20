@@ -1,22 +1,39 @@
-class Geek
-  include Mongoid::Document
+class GeekO # < Sequel::Model
 
-  field :name, type: String
-  field :stack, type: String
-  field :resume, type: Boolean, default: false
+  # DB.create_table :geeks do
+  #   primary_key :id
+  #   String :name
+  #   String :stack
+  #   Boolean :resume
+  #   # Float :price
+  # end
 
-  validates :name, presence: true
-  validates :name, uniqueness: true
+  # include Mongoid::Document
+  #
+  # field :name, type: String
+  # field :stack, type: String
+  # field :resume, type: Boolean, default: false
 
-  validates :stack, presence: true
-  validates :resume, presence: true
+  # plugin :validation_helpers
 
-  index({ name: 'text' })
+  def validate
+    super
+    validates_presence [:name, :stack]
+    validates_unique [:name]
+  end
+
+  # validates :name, presence: true
+  # validates :name, uniqueness: true
+  #
+  # validates :stack, presence: true
+  # validates :resume, presence: true
+
+  # index({ name: 'text' })
   # index({ isbn:1 }, { unique: true, name: "isbn_index" })
 
-  scope :name, -> (name) { where(name: /^#{name}/i) } # where: include? string case insensative
-  scope :stack, -> (stack) { where(stack: /#{stack}/i) } # where: include? string in any place case insensative
-  scope :id, -> (id) { where(id: id) } # where: include? string in any place case insensative
+  # scope :name, -> (name) { where(name: /^#{name}/i) } # where: include? string case insensative
+  # scope :stack, -> (stack) { where(stack: /#{stack}/i) } # where: include? string in any place case insensative
+  # scope :id, -> (id) { where(id: id) } # where: include? string in any place case insensative
 
   def self.geek_id(name)
     geek = name(name)

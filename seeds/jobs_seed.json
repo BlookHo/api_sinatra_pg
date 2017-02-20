@@ -1,9 +1,0 @@
-
-{ "company_id": ObjectId("58a0226677af2390cbccd265"), "name": "Sinatra React", "place": "Remote", "description": "This is a nice remote job." }
-{ "company_id": ObjectId("58a0226677af2390cbccd266"), "name": "Ruby React", "place": "Contract", "description": "Contract job with a lot of deadlines." }
-{ "company_id": ObjectId("58a0226677af2390cbccd267"), "name": "React", "place": "Remote", "description": "High skills of front end are in great demand." }
-{ "company_id": ObjectId("58a0226677af2390cbccd265"), "name": "Node React", "place": "Permanent", "description": "Perspective Node.js job for Team-lead." }
-{ "company_id": ObjectId("58a0226677af2390cbccd268"), "name": "Ruby on Rails", "place": "Remote", "description": "Big refactoring and RSpec job for production project." }
-{ "company_id": ObjectId("58a0226677af2390cbccd268"), "name": "Node", "place": "Permanent", "description": "Huge ambitious startup." }
-{ "company_id": ObjectId("58a0226677af2390cbccd268"), "name": "Javascript CSS HTML", "place": "Permanent", "description": "A lot of front end design." }
-

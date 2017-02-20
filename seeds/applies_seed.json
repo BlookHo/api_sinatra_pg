@@ -1,6 +1,0 @@
-{ "job_id": ObjectId("58a19b8197e086e9ceb02500"), "geek_id": ObjectId("589f01c85a49894908146ee0"), "read": true, "invited": true }
-{ "job_id": ObjectId("58a19b8197e086e9ceb02501"), "geek_id": ObjectId("589f01c85a49894908146ee1"), "read": false, "invited": false }
-{ "job_id": ObjectId("58a19b8197e086e9ceb02505"), "geek_id": ObjectId("589f01c85a49894908146ee5"), "read": true, "invited": false }
-{ "job_id": ObjectId("58a19b8197e086e9ceb02506"), "geek_id": ObjectId("589f01c85a49894908146ee8"), "read": false, "invited": false }
-
-

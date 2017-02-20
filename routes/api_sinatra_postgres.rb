@@ -1,22 +1,46 @@
 require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/namespace'
+require 'sequel'
+require 'sequel/extensions/seed'
 
-require 'mongoid'
+require 'pg'
+
 require 'json'
 require 'multi_json'
 require 'haml'
 
+
+DB = Sequel.connect(
+  adapter: :postgres,
+  database: 'sinatra_seq_dev',
+  host: 'localhost',
+  password: 'password',
+  user: 'sinatra_admin',
+  max_connections: 10,
+  # logger: Logger.new('log/db.log')
+  )
+# DB = Sequel.connect('postgres://sinatra_admin:password@localhost/sinatra_seq_dev')
+
+
+Sequel::Seed.setup :development
+Sequel.extension :seed
+Sequel::Seeder.apply(DB, './seeds')
+
+
+# config.sequel.after_connect = proc do
+#   Sequel::Model.db.extension :pagination
+#   Sequel::Model.db.extension :pg_hstore
+#   Sequel::Model.db.extension :pg_array
+#   Sequel::Model.plugin :active_model
+#   Sequel::Model.plugin :validation_helpers
+#   Sequel::Model.plugin :dirty
+#   Sequel::Model.plugin :association_proxies
+#   Sequel::Model.plugin :timestamps, update_on_create: true
+# end
 # Sinatra::Application.register Sinatra::RespondTo
 
-Dir['./models/*.rb'].each {|file| require file }
-Dir['./controllers/*.rb'].each {|file| require file }
-# Dir['./views/*.haml'].each {|file| require file }
-
-Mongoid.load! 'mongoid.config'
-
-# db = Connection.new.db('learning-mongo');
-# notes = db.collection('notes')
+%w{helpers models routes}.each {|dir| Dir.glob("./#{dir}/*.rb", &method(:require))}
 
 # Endpoints
 before do
@@ -24,16 +48,10 @@ before do
 end
 
 get '/' do
-  "Hi! I am api_sinatra_mongo!\n\n"
+  # system 'rake --tasks'
+  # "Hi! I am api_sinatra_postgres!\n\n"
   haml :index, :layout => :layout
 end
-
-
-# class HelloWorldApp < Sinatra::Base
-#   get '/:name' do
-#     "Hello, #{params[:name] ? params[:name] : 'world'}!"
-#   end
-# end
 
 
 configure :development do
