@@ -7,7 +7,7 @@ class Job < Sequel::Model
       name: name,
       company_id: company_id,
       place: place,
-      description: description,
+      # description: description,
     }
   end
 

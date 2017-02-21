@@ -24,9 +24,9 @@ namespace '/api/v1' do
     collection_to_api(companies)
   end
 
-  def collection_to_api(collection)
-    MultiJson.dump(collection.map { |s| s.to_api })
-  end
+  # def collection_to_api(collection)
+  #   MultiJson.dump(collection.map { |s| s.to_api })
+  # end
 
   def self.geeks_applied_unread(name)
     geeks_applied = Apply.unread

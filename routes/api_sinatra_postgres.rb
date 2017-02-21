@@ -3,6 +3,7 @@ require 'sinatra/base'
 require 'sinatra/namespace'
 require 'sequel'
 require 'sequel/extensions/seed'
+# require 'sequel/plugins/serialization'
 
 require 'pg'
 
@@ -86,6 +87,12 @@ configure do
   # and to false on other environments
 end
 
+
+def collection_to_api(collection) # For Array
+  MultiJson.dump(collection.map { |s| s.to_api })
+end
+
+
 error RuntimeError do #< StandardError do
   puts "Env.: #{request.env['sinatra.error'].message}"
   @error = env['sinatra.error']
@@ -132,3 +139,9 @@ end
 #
 # use ExceptionHandling
 #
+
+
+# TODO: create and load Jobs seed
+# crwate API for Jobs" POST DELETE ..  - as from Mongo
+# create API calls for Companies - Comp/jpbs
+# "

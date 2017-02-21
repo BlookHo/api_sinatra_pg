@@ -95,6 +95,8 @@ Foreign key constraint support in migrations out of the box.
 Left join support. Heh.
 More powerful association preloading.
 Querying in Sequel is immensely more powerful compared to ActiveRecord. You can do almost anything without writing any SQL.
+
+
 ### Import data to Postgres database
 
 Files with json data to be seeded - in ./seeds/ folder:
@@ -121,6 +123,23 @@ Sequel::Seed.setup :development
 Sequel.extension :seed
 Sequel::Seeder.apply(DB, './seeds')
 ```
+## SEQUEL Console to DataBase
+
+In terminal:
+````
+$ sequel postgres://sinatra_admin:password@localhost/sinatra_seq_dev
+=> Your database is stored in DB...
+dataset = DB[:companies]
+=> #<Sequel::Postgres::Dataset: "SELECT * FROM \"companies\"">
+irb(main):005:0> dataset.all
+=> [{:id=>1, :name=>"MoGo", :location=>"New York", :created_at=>nil, :upated_at=>nil}, {:id=>2, :name=>"Wirkkle", :location=>"London", :created_at=>nil, :upated_at=>nil}, {:id=>3, :name=>"Artesis", :location=>"Saint-Petersburg", :created_at=>nil, :upated_at=>nil}, {:id=>4, :name=>"BuildEmpire", :location=>"London", :created_at=>nil, :upated_at=>nil}]
+irb(main):006:0> dataset.count
+=> 4
+irb(main):007:0> dset_jobs=DB[:jobs]
+=> #<Sequel::Postgres::Dataset: "SELECT * FROM \"jobs\"">
+irb(main):008:0> dset_jobs.count
+=> 7
+````
 
 
 ####  In terminal:
@@ -357,6 +376,31 @@ Status = 204
 #### 4. Update info of one job (by one company)
 __to be done as exercise__
 
+#### 5. All jobs of one company
+
+__GET http://localhost:4567/api/v1/jobs_company/Wirkkle__
+
+where Wirkkle - name of company
+
+response:
+
+[
+  {
+    "id": 2,
+    "name": "Ruby React",
+    "company_id": 2,
+    "place": "Contract"
+  },
+  {
+    "id": 8,
+    "name": "Jira",
+    "company_id": 2,
+    "place": "Remote"
+  },
+]
+
+
+
 
 ### Companies
 
@@ -409,49 +453,6 @@ Status = 204
 
 #### 4. Update info of one company (by self company)
 __to be done as exercise__
-
-#### 5. All jobs of one company
-
-__GET http://localhost:4567/api/v1/company_jobs?name=bu__
-
-where bu - name of company 'BuildEmpire'
-
-response:
-[
-  {
-    "_id": {
-      "$oid": "58a19b8197e086e9ceb02504"
-    },
-    "company_id": {
-      "$oid": "58a0226677af2390cbccd268"
-    },
-    "description": "Big refactoring and RSpec job for production project.",
-    "name": "Ruby on Rails",
-    "place": "Remote"
-  },
-  {
-    "_id": {
-      "$oid": "58a19b8197e086e9ceb02505"
-    },
-    "company_id": {
-      "$oid": "58a0226677af2390cbccd268"
-    },
-    "description": "Huge ambitious startup.",
-    "name": "Node",
-    "place": "Permanent"
-  },
-  {
-    "_id": {
-      "$oid": "58a19b8197e086e9ceb02506"
-    },
-    "company_id": {
-      "$oid": "58a0226677af2390cbccd268"
-    },
-    "description": "A lot of front end design.",
-    "name": "Javascript CSS HTML",
-    "place": "Permanent"
-  }
-]
 
 
 ### Applications

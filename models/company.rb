@@ -44,6 +44,8 @@ class Company < Sequel::Model
 
     company_id = company.map(:id)[0]
     puts "company_id = #{company_id.inspect}"
+    company_id_select_map = company.select_map(:id)
+    puts "company_id_select_map = #{company_id_select_map.inspect}"
     # company_id = company.select(:id).naked.all.inspect
     # "[{:id=>2}]"
 
