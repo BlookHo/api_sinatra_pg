@@ -1,4 +1,4 @@
-class GeekO # < Sequel::Model
+class Geek < Sequel::Model
 
   # DB.create_table :geeks do
   #   primary_key :id
@@ -34,6 +34,15 @@ class GeekO # < Sequel::Model
   # scope :name, -> (name) { where(name: /^#{name}/i) } # where: include? string case insensative
   # scope :stack, -> (stack) { where(stack: /#{stack}/i) } # where: include? string in any place case insensative
   # scope :id, -> (id) { where(id: id) } # where: include? string in any place case insensative
+
+  def to_api # Not for array!!
+    {
+      id: id,
+      name: name,
+      stack: stack,
+      resume: resume,
+    }
+  end
 
   def self.geek_id(name)
     geek = name(name)

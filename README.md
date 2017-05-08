@@ -1,3 +1,9 @@
+#### add new favicon You have to reload the page skipping the cache. - place it to /public
+#### then: Ctrl + Shift + R
+#### OR Ctrl + F5
+
+
+
 ## Start
 
 ### Here Postgresql is using. To start: before:
@@ -551,7 +557,7 @@ response (unread):
   }
 ]
 
-#### 11. All read/unread applications
+#### 11. All invited/denied applications
 
 __GET http://localhost:4567/api/v1/applies_invited__
  or 

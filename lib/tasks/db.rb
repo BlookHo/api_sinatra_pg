@@ -12,7 +12,7 @@ namespace :db do
   # connection_string = ENV['DATABASE_URL'] || ENV["DATABASE_URL_#{environment.upcase}"]
   migrations_directory = 'db/migrations'
   connection_string = "postgres://sinatra_admin:password@localhost/#{ENV['DATABASE']}"
-  # puts "ENV['DATABASE'] = #{ENV['DATABASE'].inspect}"
+  puts "ENV['DATABASE'] = #{ENV['DATABASE'].inspect}"
   puts "connection_string = #{connection_string.inspect}"
 
   db = Sequel.connect(connection_string)

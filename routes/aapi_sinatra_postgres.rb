@@ -1,9 +1,9 @@
 require 'sinatra'
 require 'sinatra/base'
-require 'sinatra/namespace'
 require 'sequel'
 require 'sequel/extensions/seed'
 # require 'sequel/plugins/serialization'
+# require 'sinatra/namespace'
 
 require 'pg'
 
@@ -50,8 +50,8 @@ end
 
 get '/' do
   # system 'rake --tasks'
-  # "Hi! I am api_sinatra_postgres!\n\n"
-  haml :index, :layout => :layout
+  "Hi! I am api_sinatra_postgres!\n\n"
+  # haml :index, :layout => :my_layout
 end
 
 

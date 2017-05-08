@@ -1,6 +1,19 @@
-require File.dirname(__FILE__) # ?
-Sinatra::Application.config_file File.join(File.dirname(__FILE__),
-                                           'config',
-                                           "#{Sinatra::Application.settings.environment}_config.yml")
-require_relative './boot'
-run Application
+# require File.dirname(__FILE__) # ?
+# require_relative './boot'
+# # require './boot.rb'
+# require './api_sinatra_postgres.rb'
+#
+# require File.dirname(__FILE__) # ?
+
+# Sinatra::Application.config_file File.join(File.dirname(__FILE__),
+# Sinatra::Application.config.ru File.join(File.dirname(__FILE__),
+#                                            'config',
+#                                            "#{Sinatra::Application.settings.environment}_config.yml")
+
+# run # Sinatra::Application
+
+
+root = File.expand_path File.dirname(__FILE__)
+require File.join( root , 'api_sinatra_postgres.rb' )
+
+run Sinatra::Application

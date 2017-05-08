@@ -20,7 +20,17 @@ class Apply < Sequel::Model
   # scope :invited, -> { where(invited: true) }
   # scope :denied, -> { where(invited: false) }
 
+  def to_api # Not for array!!
+    {
+      id: id,
+      read: read,
+      invited: invited,
+      job_id: job_id,
+      geek_id: geek_id,
+    }
+  end
+
+
+
 end
 
-# //mongoimport --db mgeeksongo_hirer_dev --collection jobs --file jobs_seed.json
-# ///home/flyingminer/RubymineProjects/Sinatra/api_hirer/seeds/jobs_seed.json
