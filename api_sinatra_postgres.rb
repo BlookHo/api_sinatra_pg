@@ -39,7 +39,7 @@ DB = Sequel.connect(
 # end
 # Sinatra::Application.register Sinatra::RespondTo
 
-%w{helpers models routes seeds}.each {|dir| Dir.glob("./#{dir}/*.rb", &method(:require))}
+%w{controllers models routes}.each {|dir| Dir.glob("./#{dir}/*.rb", &method(:require))}
 
 # Endpoints
 before do

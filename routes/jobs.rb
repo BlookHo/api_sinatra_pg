@@ -17,7 +17,7 @@ namespace '/api/v1' do
     halt(404, { message:'Document Not Found', status: 404, params_id: params[:id]}.to_json) unless job
     puts "job id = #{job.id.inspect} "
     puts "job = #{job.values.inspect} "
-    job.values.to_json
+    job.values.to_json # serialization
   end
 
   get '/jobs_company/:name' do

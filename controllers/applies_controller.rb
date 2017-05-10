@@ -6,15 +6,15 @@ namespace '/api/v1' do
       applies = applies.send(filter, params[filter]) if params[filter]
     end
     puts applies.count
-    applies.to_json
+    collection_to_api(applies) #.to_api
   end
 
   get '/applies_read' do
-    Apply.read.to_json
+    collection_to_api(Apply.read) #.to_json
   end
 
   get '/applies_unread' do
-    Apply.unread.to_json
+    collection_to_api(Apply.unread) # .to_json
   end
 
   get '/applies_invited' do
