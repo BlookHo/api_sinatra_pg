@@ -19,7 +19,7 @@ class Job
   scope :name, -> (name) { where(name: /^#{name}/i) }
   # scope :company_id, -> (company_id) { where(company_id: company_id) }
 
-  def self.company_jobs(company_id)
+  def self.company_jobs(company_id)  # Model method
     where(company_id: company_id)
   end
 

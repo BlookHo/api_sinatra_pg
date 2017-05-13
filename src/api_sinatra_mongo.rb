@@ -25,7 +25,7 @@ end
 
 get '/' do
   "Hi! I am api_sinatra_mongo!\n\n"
-  haml :index, :layout => :layout
+  # haml :index, :layout => :layout
 end
 
 
