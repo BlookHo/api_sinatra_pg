@@ -9,7 +9,7 @@ require 'pg'
 
 require 'json'
 require 'multi_json'
-require 'haml'
+# require 'haml'
 
 
 DB = Sequel.connect(
@@ -41,21 +41,21 @@ DB = Sequel.connect(
 
 %w{controllers models routes}.each {|dir| Dir.glob("./#{dir}/*.rb", &method(:require))}
 
-# Endpoints
+# Endpoints format setup
 before do
   content_type 'application/json' # Uncomment - To see perfectly in POSTMAN - in tab Pretty
 end
 
 get '/' do
   # system 'rake --tasks'
-  "Hi! I am api_sinatra_postgres!\n\n"
+  "Hi! I am IN api_sinatra_postgres!\n\n"
   # haml :index, :layout => :my_layout
 end
 
 
-configure :development do
-  disable :show_exceptions
-end
+# configure :development do
+#   disable :show_exceptions
+# end
 
 # configure :test do
 #   disable :show_exceptions
@@ -85,14 +85,12 @@ configure do
   # and to false on other environments
 end
 
-
 def collection_to_api(collection) # For Array
-  puts "In collection_to_api: collection = #{collection.inspect}"
+  # puts "In collection_to_api: collection = #{collection.inspect}"
   a = MultiJson.dump(collection.map { |s| s.to_api })# if collection.is_a?(Array)
   puts "In collection_to_api: a = #{a.inspect}"
   a
 end
-
 
 error RuntimeError do #< StandardError do
   puts "Env.: #{request.env['sinatra.error'].message}"

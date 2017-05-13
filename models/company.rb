@@ -6,14 +6,13 @@ class Company < Sequel::Model
   def validate
     super
     errors.add(:name, "can't be empty") if name.empty?
-    # errors.add(:written_on, "should be in the past") if written_on >= Time.now
     validates_presence [:name, :location]
     validates_unique [:name]
   end
 
-  def to_api # Not for array!!
+  def company_to_api # Not for array!!
     {
-      id: id,
+      id: id.to_s,
       name: name,
       location: location,
     }

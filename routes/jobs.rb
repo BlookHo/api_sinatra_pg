@@ -20,6 +20,7 @@ namespace '/api/v1' do
     job.values.to_json # serialization
   end
 
+  # http://localhost:4567/api/v1//jobs_company/Wirkkle
   get '/jobs_company/:name' do
     company = Company.where(name: params[:name]).first
     halt(404, { message:'Company Document Not Found', status: 404, params_id: params[:id]}.to_json) unless company

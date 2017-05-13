@@ -1,9 +1,11 @@
 namespace '/api/v1' do
 
-  # not_found do
+  not_found do
   #   'This is nowhere to be found.'
-  # end
-
+  render json: { error: 'No such record in Database; check params',
+                 status: :not_found,
+  }
+  end
 
   # def call_method(model_name, method, params)
   #   if params

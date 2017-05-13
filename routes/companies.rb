@@ -1,5 +1,7 @@
 namespace '/api/v1' do
 
+  require 'json'
+
   # All companies, filtered
   # get 'http://localhost:4567/companies?name=Mo
   get '/companies' do
@@ -34,7 +36,6 @@ namespace '/api/v1' do
     name_filtering(geeks_applied, name)
   end
 
-
   # All jobs of the company
   # get http://localhost:4567/api/v1/company_jobs?name=Mo
   get '/company_jobs' do
@@ -42,5 +43,19 @@ namespace '/api/v1' do
     # call_one_method(Company, 'company_jobs', params[:name])
   end
 
-end
+  # get http://localhost:4567/api/v1/company/2
+  get '/company/:id' do
+    puts "id = #{params[:id]}"
+    company = Company.where(id: params[:id].to_i)
+    puts "company.to_a = #{company.to_a}"
+    puts "company.to_a[0].values.to_json = #{company.to_a[0].values.to_json}"
+    company.to_a[0].values.to_json
+  end
 
+  # http://localhost:4567/api/v1/companies?name=Deter&location=Ubud
+  post '/companies' do
+    company = Company.create(params)
+    company.nil? ? [].to_json : company.values.to_json
+  end
+
+end
