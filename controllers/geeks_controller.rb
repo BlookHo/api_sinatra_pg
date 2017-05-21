@@ -62,6 +62,7 @@ namespace '/api/v1' do
   # WORK!
   # All geeks, filtered
   # get 'http://localhost:4567/geeks?stack=ruby
+  # http://localhost:4567/api/v1/geeks?name=mi
   get '/geeks' do
     geeks = Geek.all
     halt(404, { message:'Document Not Found', status: 404}.to_json) if geeks.empty?
