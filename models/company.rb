@@ -10,7 +10,7 @@ class Company < Sequel::Model
     validates_unique [:name]
   end
 
-  def company_to_api # Not for array!!
+  def to_api # Not for array!!
     {
       id: id.to_s,
       name: name,
@@ -18,12 +18,19 @@ class Company < Sequel::Model
     }
   end
 
+  # def company_to_api # Not for array!!
+  #   {
+  #     id: id.to_s,
+  #     name: name,
+  #     location: location,
+  #   }
+  # end
+
   # dataset_module do # Model scope's OR self.
     def self.by_name(name)
       res = []
       res = where(name: /#{name}/i) if name
       puts "In by_name dataset mod: res = #{res.inspect}"
-      # res.empty? ? [].to_json : collection_to_api(res)
       res.empty? ? [] : res
     end
   # end

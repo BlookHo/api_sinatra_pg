@@ -59,17 +59,19 @@ namespace '/api/v1' do
     end
   end
 
+  # WORK!
   # All geeks, filtered
   # get 'http://localhost:4567/geeks?stack=ruby
   get '/geeks' do
     geeks = Geek.all
-    halt(404, { message:'Document Not Found', status: 404}.to_json) if geeks.blank?
+    halt(404, { message:'Document Not Found', status: 404}.to_json) if geeks.empty?
     [:id, :name, :stack].each do |filter|
       geeks = geeks.send(filter, params[filter]) if params[filter]
     end
     geeks.to_json
   end
 
+  # WORK!
   # All applications, can be filtered by geek's name
   # get 'http://localhost:4567/geek_applied?name=Alex
   get '/geeks_applied' do

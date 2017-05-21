@@ -49,34 +49,35 @@ class Geek < Sequel::Model
     geek.blank? ? [].to_json : geek[0].id
   end
 
+  # WORK!
   def self.geeks_applied(name)
     geeks_applied = Apply.all
     halt(404, { message:'Applications Not Found'}.to_json) unless geeks_applied # ?
-    return geeks_applications(geeks_applied) if name.blank?
+    return geeks_applications(geeks_applied) if name.nil?
     name_filtering(geeks_applied, name)
   end
 
   def self.geeks_applied_read(name)
     geeks_applied = Apply.read
-    return geeks_applications(geeks_applied) if name.blank?
+    return geeks_applications(geeks_applied) if name.empty?
     name_filtering(geeks_applied, name)
    end
 
   def self.geeks_applied_unread(name)
     geeks_applied = Apply.unread
-    return geeks_applications(geeks_applied) if name.blank?
+    return geeks_applications(geeks_applied) if name.empty?
     name_filtering(geeks_applied, name)
   end
 
   def self.geeks_applied_invited(name)
     geeks_applied = Apply.invited
-    return geeks_applications(geeks_applied) if name.blank?
+    return geeks_applications(geeks_applied) if name.empty?
     name_filtering(geeks_applied, name)
   end
 
   def self.geeks_applied_denied(name)
     geeks_applied = Apply.denied
-    return geeks_applications(geeks_applied) if name.blank?
+    return geeks_applications(geeks_applied) if name.empty?
     name_filtering(geeks_applied, name)
   end
 
@@ -84,8 +85,9 @@ class Geek < Sequel::Model
     query.apply_geek(geek_id(name))
   end
 
+  # WORK!
   def self.geeks_applications(geeks)
-    geeks.blank? ? [].to_json : geeks.to_json
+    geeks.nil? ? [].to_json : geeks.to_json
   end
 
   def self.name_filtering(query, name)

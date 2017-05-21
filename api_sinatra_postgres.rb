@@ -22,11 +22,6 @@ DB = Sequel.connect(
   # logger: Logger.new('log/db.log')
   )
 
-# Sequel::Seed.setup :development # Set the environment
-# Sequel.extension :seed # Load the extension
-# Sequel::Seeder.apply(DB, './seeds') # Apply the seeds/fixtures
-
-
 # config.sequel.after_connect = proc do
 #   Sequel::Model.db.extension :pagination
 #   Sequel::Model.db.extension :pg_hstore
@@ -48,7 +43,7 @@ end
 
 get '/' do
   # system 'rake --tasks'
-  "Hi! I am IN api_sinatra_postgres!\n\n"
+  "Hi! I am IN api_sinatra_postgres! It's fine!\n\n"
   # haml :index, :layout => :my_layout
 end
 
@@ -86,7 +81,7 @@ configure do
 end
 
 def collection_to_api(collection) # For Array
-  # puts "In collection_to_api: collection = #{collection.inspect}"
+  # puts "In collection_to_api: collection = #{collection.inspect}" [:vaues]
   a = MultiJson.dump(collection.map { |s| s.to_api })# if collection.is_a?(Array)
   puts "In collection_to_api: a = #{a.inspect}"
   a

@@ -1,5 +1,6 @@
 namespace '/api/v1' do
 
+  #  # WORK -
   # get '/jobs -- http://localhost:4567/jobs?company=Spring
   # http://localhost:4567/jobs?place=Remo
   # http://localhost:4567/jobs?company= - all
@@ -12,6 +13,7 @@ namespace '/api/v1' do
     collection_to_api(jobs)
   end
 
+  # WORK -
   get '/job/:id' do
     job = Job.where(id: params[:id]).first
     halt(404, { message:'Document Not Found', status: 404, params_id: params[:id]}.to_json) unless job
@@ -20,7 +22,8 @@ namespace '/api/v1' do
     job.values.to_json # serialization
   end
 
-  # http://localhost:4567/api/v1//jobs_company/Wirkkle
+  # WORK -
+  # http://localhost:4567/api/v1/jobs_company/Wirkkle
   get '/jobs_company/:name' do
     company = Company.where(name: params[:name]).first
     halt(404, { message:'Company Document Not Found', status: 404, params_id: params[:id]}.to_json) unless company
@@ -35,6 +38,7 @@ namespace '/api/v1' do
   end
 
 
+  # POST!
   # Create new job by one company
   # http://localhost:4567/api/v1/job?company_id=2;name=Jira;place=Remote
   post '/job' do

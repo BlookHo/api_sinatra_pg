@@ -2,10 +2,13 @@ namespace '/api/v1' do
 
   require 'json'
 
+  # WORK!
   # All companies, filtered
   # get 'http://localhost:4567/companies?name=Mo
   get '/companies' do
     companies = Company.all
+    puts "params = #{params.inspect}"
+    puts "companies = #{companies.inspect}"
     return collection_to_api(companies) if params.empty?
     if params['name']
       puts 'name'
@@ -13,6 +16,7 @@ namespace '/api/v1' do
       if params['location']
         puts 'name + location'
         companies = companies_all.by_location(params['location'])
+        puts "companies = #{companies.inspect}"
       else
         puts 'name NO location'
         companies = companies_all
@@ -26,6 +30,10 @@ namespace '/api/v1' do
     collection_to_api(companies)
   end
 
+
+
+
+
   # def collection_to_api(collection)
   #   MultiJson.dump(collection.map { |s| s.to_api })
   # end
@@ -36,6 +44,7 @@ namespace '/api/v1' do
     name_filtering(geeks_applied, name)
   end
 
+  # WORK -
   # All jobs of the company
   # get http://localhost:4567/api/v1/company_jobs?name=Mo
   get '/company_jobs' do
@@ -43,6 +52,7 @@ namespace '/api/v1' do
     # call_one_method(Company, 'company_jobs', params[:name])
   end
 
+  # WORK -
   # get http://localhost:4567/api/v1/company/2
   get '/company/:id' do
     puts "id = #{params[:id]}"
