@@ -2,11 +2,6 @@ Sequel.seed(:development, :test) do # Applies only to "development" and "test" e
   def run
     puts 'run seed companies'
     dataset = DB[:companies]
-
-    # dataset.insert(:id => 1, :name => 'MoGo', :location => 'New York')
-    # dataset.insert(:id => 2,:name => 'Wirkkle', :location => 'London')
-    # dataset.insert(:id => 3,:name => 'Artesis', :location => 'Saint-Petersburg')
-    # dataset.insert(:id => 4,:name => 'NewAge-seed file', :location => 'Toronto')
     dataset.insert(:name => 'MoGo', :location => 'New York')
     dataset.insert(:name => 'Wirkkle', :location => 'London')
     dataset.insert(:name => 'Artesis', :location => 'Saint-Petersburg')

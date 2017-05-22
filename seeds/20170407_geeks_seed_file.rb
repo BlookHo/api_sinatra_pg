@@ -1,9 +1,7 @@
 Sequel.seed(:development, :test) do # Applies only to "development" and "test" environments
   def run
     puts 'run seed geeks'
-
     dataset = DB[:geeks]
-
     dataset.insert( :name => 'Anna Ivanova', :stack => 'RubyOnRails, JS', :resume => true)
     dataset.insert( :name => 'Nick Petrov', :stack => 'Node, JS', :resume => false)
     dataset.insert( :name => 'Michail Smirnov', :stack => 'Php, HTML', :resume => true)
@@ -12,7 +10,6 @@ Sequel.seed(:development, :test) do # Applies only to "development" and "test" e
     dataset.insert( :name => 'Egor Nikolaev', :stack => 'C++, .NET', :resume => false)
     dataset.insert( :name => 'Fyodor Pletnev', :stack => 'Java', :resume => true)
     dataset.insert( :name => 'Ivan Ivanov', :stack => 'Python, R', :resume => false)
-
   end
 end
 
