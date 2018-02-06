@@ -69,7 +69,9 @@ namespace '/api/v1' do
     [:id, :name, :stack].each do |filter|
       geeks = geeks.send(filter, params[filter]) if params[filter]
     end
-    geeks.to_json
+    collection_to_api(geeks)
+
+    # geeks.to_json
   end
 
   # WORK!

@@ -2,14 +2,14 @@ source 'https://rubygems.org'
 
 gem 'json'
 # gem 'nokogiri'
-gem 'sinatra', '~> 1.4.8' #, github: 'sinatra/sinatra'#, '~> 1.4.0' #'2.0.0.rc2'
+gem 'sinatra'#, '~> 1.4.8' #, github: 'sinatra/sinatra'#, '~> 1.4.0' #'2.0.0.rc2'
 # gem 'activerecord'
 # gem 'sinatra-activerecord'
 
 gem 'sequel'
 gem 'sequel-seed'
 
-gem 'sinatra-contrib', '~> 1.4.7'
+gem 'sinatra-contrib'#, '~> 1.4.7'
 gem 'rack', '~> 1.5'
 gem 'rake'
 gem 'pg'
